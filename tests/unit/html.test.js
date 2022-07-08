@@ -14,7 +14,6 @@ const url = require("url");
 //   const regex = new RegExp(`^${hostname}`, "g");
 //   return { parseUrl, hostname, regex };
 // };
-git@github.com:SimerpreetKaurReact/backend_node_service.git
 describe("html", () => {
   afterEach(() => {
     jest.restoreAllMocks();
