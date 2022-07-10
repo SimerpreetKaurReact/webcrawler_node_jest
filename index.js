@@ -2,7 +2,6 @@
 const { Worker } = require("worker_threads");
 let n = 2;
 let website = process.argv[2];
-
 if (process.argv[2] == "-n") {
   n = process.argv[3];
   website = process.argv[4];
@@ -14,7 +13,7 @@ let errorLog = [];
 // Calling the worker
 function runService(workerData) {
   return new Promise((resolve, reject) => {
-    const worker = new Worker("./worker.js", { workerData });
+    const worker = new Worker("./main.js", { workerData });
     worker.on("message", resolve);
     worker.on("error", reject);
     worker.on("exit", (code) => {
@@ -32,12 +31,12 @@ async function run(link) {
   // console.log('Result: ', result.links);
   --runningWorkers;
   // Add unique links to the list
-  await addUniqueLinks(result.links);
+  const list = await addUniqueLinks(result.links);
   // console.log('New List: ', links);
   main();
 }
 
-function addUniqueLinks(list) {
+async function addUniqueLinks(list) {
   links.push(list);
   links = links.flat();
   links = [...new Set(links)];
@@ -66,10 +65,12 @@ function main() {
     linkIndex++;
     test++;
     runningWorkers++;
+
     run(link).catch((err) => {
       --runningWorkers;
+
       throw new Error("Error Occurred on link");
-      //console.error("Error Occurred on link: ", link, err);
+      // console.error("Error Occurred on link: ", link, err);
     });
   }
 }

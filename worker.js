@@ -15,7 +15,6 @@ const getRegex = async () => {
 };
 
 const getHtml = async (url) => {
-  console.log(url);
   const { data } = await axios.get(url);
   return data;
 };
@@ -52,24 +51,11 @@ const cleanHTML = async (linkResults) => {
   return array;
 };
 
-async function main() {
-  // Get the HTML
-  let linkResults = await getfiltered();
-
-  // Clean the HTML and get new links in the domain
-  let cleanResults = await cleanHTML(linkResults);
-
-  // Return the links from the page
-  parentPort.postMessage({ links: cleanResults, status: "Done" });
-}
-
-main();
-
 module.exports = {
   cheerioInit,
   getHtml,
   getfiltered,
-  main,
+
   cleanHTML,
   getRegex,
 };

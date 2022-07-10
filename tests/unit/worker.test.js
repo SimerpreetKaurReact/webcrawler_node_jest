@@ -3,7 +3,7 @@ process.argv = ["node", "index.js", "-n", "4", "https://www.flipkart.com"];
 let { main, checkBoolean, run } = require("../../index.js");
 const { Worker } = require("worker_threads");
 
-describe("Worker.getHTML", () => {
+describe("Worker.checkBoolean", () => {
   test("should have a get html function", async () => {
     checkBoolean = jest.fn();
     expect(typeof main).toBe("function");
