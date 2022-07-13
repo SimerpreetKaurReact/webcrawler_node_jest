@@ -23,8 +23,6 @@ const cheerioInit = async (url) => cheerio.load(await getHtml(url));
 
 const getfiltered = async () => {
   const $ = await cheerioInit(workerData);
-
-  //const $ = cheerio.load(res.data);
   const siteText = $.text();
   let linksList = [];
   $("a").each(function (i, link) {

@@ -46,6 +46,7 @@ function checkBoolean() {
   // Count the links
   let count = links.length;
   let pending = count - linkIndex;
+
   // ******** Use this to test for 5 links only *********
   //let testingUnit = test > 5 ? 0 : test;
   //return Math.min(n - runningWorkers, pending, testingUnit) > 0;
